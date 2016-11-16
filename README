@@ -1,0 +1,26 @@
+Gurion Marks, Jeremy Mazumder
+gmarks2, jmazumd1
+Intermediate Programming Fall '16
+Section 1
+Final Project
+
+This is the final project for Intermediate Programming - to design and build a plagiarism checking program.
+
+1) Running
+   Run make in the src directory. An executable called run will be created that you can then run.
+
+2) Testing
+   Run make in the tests directory. An executable called test will be created that runs unit tests on functions used in the plagiarism checker.
+
+3) Plan of Attack
+
+4) Design
+
+5) Flags
+
+6) Timing
+
+7) Challenges
+
+8) Future
+
