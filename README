@@ -10,17 +10,41 @@ This is the final project for Intermediate Programming - to design and build a p
    Run make in the src directory. An executable called run will be created that you can then run.
 
 2) Testing
-   Run make in the tests directory. An executable called test will be created that runs unit tests on functions used in the plagiarism checker.
+   Run make in the tests directory. An executable called test will be created that runs unit tests on functions used.
 
 3) Plan of Attack
+	I initially thought to make a "document" class, which essentially would just hold an Ngram collection. Each file would be turned into an Ngram collection, stored in a document, a class called docList would hold a vector of documents. I realized that this would be unnecessarily memory intesive as I'd only be looking at 2 files at a time. Therefore I took out the middle document class, and slightly modified Ngram collection for added functionality. DocList then just holds a list of the file names, and an Ngram collection is created for each file as needed. 
+
+	The plagiarism algorithms are held in a class called plagiarism algorithms. I made a separate function for each sensitivity. 
 
 4) Design
+	Class: NgramCollection
+		Description - This class holds functions for getting input from a file and turning it into an NgramCollection.
+		Function: getInput
+		Function: increment
+		Function: getN
+		Function: getNumWords
+	
+	Class: DocList
+		Description - This class holds functions for checking files and making a list of file names.
+		Function: MakeList
+		Function: CheckList
+		Function: getNumDocs
+
+	File: PlagiarismAlgorithms
+		Function: LowAlgs
+		Function: MedAlgs
+		Function: HighAlgs
+
+	File: Driver
+		Holds main method for the program, and deals with input.
+
 
 5) Flags
 
 6) Timing
 
 7) Challenges
-
+	I had initial challenges on trying to figure out how to best get and store input.
 8) Future
 
