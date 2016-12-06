@@ -1,7 +1,9 @@
 #include "../include/docList.hpp"
+#include "../include/NgramCollection.hpp"
 
 using std::vector;
 using std::string;
+using std::map;
 using std::ifstream;
 using std::cout;
 
@@ -46,7 +48,20 @@ vector<string> docList::makeList(string filename){
 	}
 }
 
-//returns number of docs in the vector
-int docList::getNumDocs(){
-	return numDocs;
+/*
+vector<NgramCollection> docList::makeDocs(docList files){
+	vector<NgramCollection> docs;
+	for (int i = 1; i < files.getNumDocs()){
+		string str = "coll" + to_string(i);
+		new NgramCollection str(3);
+
+	}
+	for (auto iter = filelist.begin(); iter != filelist.end(); iter++){
+		
+	}
+	return docs;
 }
+*/
+
+
+

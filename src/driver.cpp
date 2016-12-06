@@ -30,6 +30,8 @@ int main(){
 	if (choiceChar == 'l')
 		output = lowAlgs(filestring);
 	
+	if (output != "ERROR - Bad file input.")
+		cout << "The following pairs of files have been marked as suspiciously similar: \n\n";
 	cout << output;
 
 	return 0;

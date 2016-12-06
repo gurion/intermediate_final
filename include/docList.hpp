@@ -14,12 +14,15 @@ public:
 
 	std::vector<std::string> makeList(std::string filename);
 
+	//std::vector<NgramCollection> makeDocs(std::vector<std::string> *filelist); 
+
 	int checkFileList(std::string filename);
 
-	int getNumDocs();
+	int getNumDocs() { return numDocs; };
 
 private:
 	std::vector<std::string> list;
+	std::map<std::string, NgramCollection> documents;
 	int numDocs;
 };
 

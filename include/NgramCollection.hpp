@@ -25,6 +25,10 @@ public:
 
     int getNumWords() const {return numWords;}
 
+    friend std::string lowAlgs(std::string filename);
+    friend std::string medAlgs(std::string filename);
+    friend std::string highAlgs(std::string filename);
+
 private:
     std::map<std::vector<std::string>, std::map<std::string, unsigned>> counts;
     int numWords;
