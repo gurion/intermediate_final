@@ -31,10 +31,9 @@ string algs(string filename, char sense){
 	}
 
 	//check for repeated files
-	cout << "seg fault 1\n";
 	string file1;
 	string file2;
-	for (auto iter = v.begin(); iter != v.end(); iter++){
+	for (auto iter = v.begin(); iter != v.end() - 1; iter++){
 		file1 = *iter;
 		file2 = *(iter++);
 		if (file1 == file2){
@@ -44,14 +43,12 @@ string algs(string filename, char sense){
 	}
 
 	//compare Ngrams
-	for (auto iter1 = colls.begin(); iter1 != colls.end(); iter1++){
+	for (auto iter1 = colls.begin(); iter1 != colls.end(); iter1++){	  
 		coll1 = *iter1;
-		cout << "seg fault 2\n";
 		unsigned i = 0;
 		for (auto iter2 = iter1++; iter2 != colls.end(); iter2++){
 			numMatches = 0;
 			coll2 = *iter2;
-			cout << "seg fault 3\n";
 			unsigned j = i + 1;
 			if (j > v.size())
 				break;
