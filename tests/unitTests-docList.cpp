@@ -1,4 +1,4 @@
-#include "../include/CHECK.hpp"
+#include "../include/catch.hpp"
 #include "../include/docList.hpp"
 #include "../include/NgramCollection.hpp"
 
