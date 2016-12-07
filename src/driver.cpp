@@ -11,9 +11,7 @@ int main(int argc, char* argv[]){
 	string filestring;
 	char choiceChar;
 	string output;
-	cout << "Welcome to Gurion's Plagiarism Checker.\n\n";
-	cout << "Please enter the name of your file (including extension) containing all the files you want to check: \n";
-	cout << "Now please enter the sensitivity you'd like to use - High (h), Medium (m), or low (l): \n";
+	cout << "\nWelcome to Gurion's Plagiarism Checker.\n\n";
 	if (argc > 3 || argc <= 1){
 		cout << "ERROR - Invalid arguments.\n Goodbye!\n\n";
 		return 0;

@@ -14,14 +14,80 @@ string lowAlgs(string filename){
 	int numMatches = 0;
 	int numTimes = 0;
 	int numPairs = 0;
-	NgramCollection coll1(4);
-	NgramCollection coll2(4);
+	NgramCollection coll1(3);
+	NgramCollection coll2(3);
 
 	int check = docs.checkFileList(filename);
 	if (check == 0)
 		return "ERROR - Bad file input.\n";
 	vector<string> v = docs.makeList(filename);
+	vector<NgramCollection> colls;
+	
+	//get input
+	NgramCollection coll(3);
+	for (unsigned i = 0; i != v.size(); i++){
+		colls.push_back(coll);
+		colls.at(i).getInput(v.at(i));
+	}
 
+	//check for repeated files
+	string file1;
+	string file2;
+	for (auto iter = v.begin(); iter != v.end(); iter++){
+		file1 = *iter;
+		file2 = *(iter++);
+		if (file1 == file2){
+			pairs += file1 + " " + file2 + "\n";
+			numPairs++;			
+		}
+	}
+
+	for (auto iter1 = colls.begin(); iter1 != colls.end(); iter1++){
+		coll1 = *iter1;
+		int i = 0;
+		for (auto iter2 = iter1++; iter2 != colls.end(); iter2++){
+			coll2 = *iter2;
+			int j = i + 1;
+			int num1 = coll1.getNumWords();
+			int num2 = coll2.getNumWords();
+			if (num1 >= num2){
+				for (auto coll1Iter = coll1.counts.begin(); coll1Iter != coll1.counts.end(); coll1Iter++){
+					int broken = 0;
+					for (auto coll2Iter = coll2.counts.begin(); coll2Iter != coll2.counts.end(); coll2Iter++){
+						if (coll1Iter->first == coll2Iter->first){
+							numMatches++;
+							if (numMatches >= coll2.getNumGrams()/5){
+								pairs += v.at(i) + " " + v.at(j) + "\n";
+								broken = 1;
+								break;
+							}
+						}
+					}
+					if (broken == 1)
+						break;
+				}
+			} else {
+				for (auto coll2Iter = coll2.counts.begin(); coll2Iter != coll2.counts.end(); coll2Iter++){
+					int broken = 0;
+					for (auto coll1Iter = coll1.counts.begin(); coll1Iter != coll1.counts.end(); coll1Iter++){
+						if (coll1Iter->first == coll2Iter->first){
+							numMatches++;
+							if (numMatches >= coll1.getNumGrams()/5){
+								pairs += v.at(i) + " " + v.at(j) + "\n";
+								broken = 1;
+								break;
+							}
+						}
+					}
+					if (broken == 1)
+						break;
+				}
+			}
+			j++;
+		}
+		i++;
+	}
+/*
 	for (auto it = v.begin(); it != v.end(); it++){
 		int numWords1 = coll1.getInput(*it);
 		cout << "got file 1" << *it << " ";
@@ -56,7 +122,7 @@ string lowAlgs(string filename){
 							}
 						}
 						*/
-					}
+/*					}
 					if (broken == 1){
 						break;
 					}
@@ -85,6 +151,7 @@ string lowAlgs(string filename){
 	if (numPairs == 0){
 		pairs = "No suspicious pairs found.";
 	}
+	*/
 	return pairs;
 }
 
