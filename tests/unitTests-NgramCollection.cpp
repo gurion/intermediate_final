@@ -36,6 +36,7 @@ TEST_CASE("getN", "[getN]") {
  */
 TEST_CASE("toString when empty", "[toString]") {
   NgramCollection g3(3);
+<<<<<<< HEAD
   CATCH(g3.toString() == "");
   CATCH(g3.toString('a') == "");
   CATCH(g3.toString('r') == "");
@@ -47,6 +48,12 @@ TEST_CASE("toString when empty", "[toString]") {
   CATCH(g4.toString('r') == "");
   CATCH(g4.toString('c') == "");
 
+=======
+  REQUIRE(g3.toString() == "");
+
+  NgramCollection g4(4);
+  REQUIRE(g4.toString() == "");
+>>>>>>> 3223a52f645c53f8101d1895837985889811d2de
 }
 
 /* test both toString and increment (since toString is the easiest way
@@ -63,6 +70,7 @@ TEST_CASE("toString after increment", "[toString],[increment]") {
   v.push_back("seven");
   
   g3.increment(v.begin(), v.end()-1);
+<<<<<<< HEAD
   CATCH(g3.toString() == "Four score and 1\n");
   CATCH(g3.toString('a') == "Four score and 1\n");
   CATCH(g3.toString('r') == "Four score and 1\n");
@@ -227,3 +235,18 @@ TEST_CASE("pickWord with some options", "[pickWord]") {
   CATCH((can / (double) numTrials) == Approx(0.25).epsilon(0.03));
 
 }
+=======
+  REQUIRE(g3.toString() == "Four score and 1\n");
+
+  g3.increment(v.begin()+1, v.end());
+  REQUIRE(g3.toString() == "Four score and 1\nscore and seven 1\n");
+
+  g3.increment(v.begin(), v.end()-1);
+  REQUIRE(g3.toString() == "Four score and 2\nscore and seven 1\n");
+
+  g3.increment(v.begin()+1, v.end());
+  g3.increment(v.begin()+1, v.end());
+  REQUIRE(g3.toString() == "Four score and 2\nscore and seven 3\n");
+}
+
+>>>>>>> 3223a52f645c53f8101d1895837985889811d2de

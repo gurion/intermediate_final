@@ -21,6 +21,8 @@ public:
 
     void increment(std::vector<std::string>::const_iterator begin, std::vector<std::string>::const_iterator end);
 
+    std::string toString() const;
+
     unsigned getN() const { return n; }
 
     int getNumWords() const {return numWords;}
