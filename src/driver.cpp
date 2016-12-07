@@ -28,15 +28,9 @@ int main(int argc, char* argv[]){
 			cout << "Invalid sensitivity, program terminated. Goodbye!";
 		}
 	}
-	if (choiceChar == 'h')
-		output = highAlgs(filestring);
-		
-	if (choiceChar == 'm')
-		output = medAlgs(filestring);
 
-	if (choiceChar == 'l')
-		output = lowAlgs(filestring);
-	
+	output = algs(filestring, choiceChar);
+
 	if (output != "ERROR - Bad file input.")
 		cout << "The following pairs of files have been marked as suspiciously similar: \n\n";
 	cout << output;
