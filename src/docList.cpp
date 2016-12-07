@@ -11,14 +11,12 @@ using std::cout;
 int docList::checkFileList(string filename){
 	ifstream in(filename);
 	if (!in.is_open()){
-		cout << "ERROR - Bad file.\n\n";
 		return 0;
 	}
 	string file;
 	while (in >> file){
 		ifstream check(file);
 		if (!check.is_open()){
-			cout << "Error - Bad file in list.\n\n";
 			return 0;
 		}
 		check.close();
@@ -42,7 +40,6 @@ vector<string> docList::makeList(string filename){
 		in.close();
 		return list;
 	} else {
-		cout << "ERROR - Bad file.";
 		list = {""};
 		return list;
 	}

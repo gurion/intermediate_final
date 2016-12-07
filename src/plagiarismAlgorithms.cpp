@@ -9,47 +9,72 @@ using std::ifstream;
 
 //low sensitivity plagiarism check
 string lowAlgs(string filename){
-	string pairs = "";
-	/*
-	NgramCollection coll1(3);
-	NgramCollection coll2(3);
-	*/
+	string pairs = "The following pairs are suspicious:\n";
 	docList docs;
 	int numMatches = 0;
 	int numTimes = 0;
 	int numPairs = 0;
+	NgramCollection coll1(4);
+	NgramCollection coll2(4);
 
 	int check = docs.checkFileList(filename);
 	if (check == 0)
-		return "ERROR - Bad file input.";
+		return "ERROR - Bad file input.\n";
 	vector<string> v = docs.makeList(filename);
 
 	for (auto it = v.begin(); it != v.end(); it++){
-		ifstream f1(*it);
-		vector<string> file1;
-		string file1str;
-		int num1 = 0;
-		while (f1 >> file1str){
-			file1.push_back(file1str);
-			num1++;
-		}
+		int numWords1 = coll1.getInput(*it);
 		for (auto it2 = it + 1; it2 != v.end(); it2++){
-			ifstream f2(*it2);
-			vector<string> file2;
-			string file2str;
-			int num2 = 0;
-			while (f2 >> file2str){
-				file2.push_back(file2str);
-				num2++;
-			}
-			//repeated file
+			int numWords2 = coll2.getInput(*it2);
+			//check for repeated file
 			if (*it == *it2){
 				pairs += *it + " " + *it2 + "\n";
 				numPairs++;
 			}
 
-			//repeated words
-			
+			if (numWords1 >= numWords2){
+				for (auto coll1Iter = coll1.counts.begin(); coll1Iter != coll1.counts.end(); coll1Iter++){
+					int broken = 0;
+					for (auto coll2Iter = coll2.counts.begin(); coll2Iter != coll2.counts.end(); coll2Iter++){
+						if (coll1Iter->first == coll2Iter->first){
+							numMatches++;
+							if (numMatches >= (coll1.getNumGrams())/5){
+								pairs += *it + " " + *it2 + "\n";
+								broken = 1;
+								break;
+							}
+						}
+						if (coll1.counts[*coll1Iter]->second == coll2.counts[*coll2Iter]->second){
+							numTimes += coll1.counts[*coll1Iter]->second;
+							if (numTimes >= numWords2/5){
+								pairs += *it + " " + *it2 + "\n";
+								broken = 1;
+								break;
+							}
+						}
+					}
+					if (broken == 1){
+						break;
+					}
+				}
+			} else {
+				for (auto coll2Iter = coll2.counts.begin(); coll2Iter != coll2.counts.end(); coll2Iter++){
+					int broken = 0;
+					for (auto coll1Iter = coll1.counts.begin(); coll1Iter != coll1.counts.end(); coll1Iter++){
+						if (coll1Iter->first == coll2Iter->first){
+							numMatches++;
+							if (numMatches >= (coll2.getNumGrams())/5){
+								pairs += *it + " " + *it2 + "\n";
+								broken = 1;
+								break;
+							}
+						}
+					}
+					if (broken == 1){
+						break;
+					}
+				}				
+			}
 		}	
 	}	
 	
@@ -60,11 +85,37 @@ string lowAlgs(string filename){
 }
 
 string medAlgs(string filename){
-	string output = "";
-	return output;
+	string pairs = "";
+	/*
+	NgramCollection coll1(3);
+	NgramCollection coll2(3);
+	*/
+	docList docs;
+	int numMatches = 0;
+	int numPairs = 0;
+
+	int check = docs.checkFileList(filename);
+	if (check == 0)
+		return "ERROR - Bad file input.\n";
+	vector<string> v = docs.makeList(filename);
+
+	return pairs;
 }
 
 string highAlgs(string filename){
-	string output = "";
-	return output;
+	string pairs = "";
+	/*
+	NgramCollection coll1(3);
+	NgramCollection coll2(3);
+	*/
+	docList docs;
+	int numMatches = 0;
+	int numPairs = 0;
+
+	int check = docs.checkFileList(filename);
+	if (check == 0)
+		return "ERROR - Bad file input.\n";
+	vector<string> v = docs.makeList(filename);
+
+	return pairs;
 }

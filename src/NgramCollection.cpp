@@ -29,8 +29,9 @@ int NgramCollection::getInput(string filename){
     	increment(begin, end);
     	begin++;
     	end++;
+        numGrams++;
     }
-    return 1;
+    return numWords;
 }
 
 //creates N-grams, adds to map
