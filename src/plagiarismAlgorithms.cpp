@@ -44,14 +44,16 @@ string lowAlgs(string filename){
 								break;
 							}
 						}
-						if (coll1.counts[*coll1Iter]->second == coll2.counts[*coll2Iter]->second){
-							numTimes += coll1.counts[*coll1Iter]->second;
+						/*
+						if (counts.at(coll1Iter)->second.second == coll2Iter->second){
+							numTimes += coll1Iter->second;
 							if (numTimes >= numWords2/5){
 								pairs += *it + " " + *it2 + "\n";
 								broken = 1;
 								break;
 							}
 						}
+						*/
 					}
 					if (broken == 1){
 						break;
