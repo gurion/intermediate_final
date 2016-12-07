@@ -12,8 +12,6 @@ using std::string;
 using std::vector;
 using std::list;
 using std::map;
-using std::ifstream;
-using std::cout;
 
 TEST_CASE("checkFileList", "[checkFileList]") {
   docList doclist;
@@ -28,14 +26,14 @@ TEST_CASE("checkFileList", "[checkFileList]") {
 TEST_CASE("makeList", "[makeList]") {
   docList doclist1;
   vector<string> list1 = doclist1.makeList("testfile1.txt");
-  CHECK(doclist1.getNumDocs() == 3);
-  CHECK(list1 == {"test1doc1.txt", "test1doc2.txt", "test1doc3.txt"});
+  vector<string> list12 = {"test1doc1.txt", "test1doc2.txt", "test1doc3.txt"};
+  CHECK(list1 == list12);
   docList doclist2;
   vector<string> list2 = doclist2.makeList("testfile2.txt");
-  CHECK(doclist2.getNumDocs() == 0);
-  CHECK(list2 == {""});
+  vector<string> list22 = {};
+  CHECK(list2 == list22);
   docList doclist3;
   vector<string> list3 = doclist3.makeList("testfile3.txt");
-  CHECK(doclist3.getNumDocs() == 5);
-  CHECK(list3 == {"test3doc1.txt", "test3doc2.txt", "test3doc3.txt", "test3doc4.txt", "test3doc5.txt"});
+  vector<string> list32 = {"test3doc1.txt", "test3doc2.txt", "test3doc3.txt", "test3doc4.txt", "test3doc5.txt"};
+  CHECK(list3 == list32);
 }
