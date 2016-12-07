@@ -33,8 +33,8 @@ public:
 
 private:
     std::map<std::vector<std::string>, std::map<std::string, unsigned>> counts;
-    int numWords;
-    int numGrams;
+    int numWords = 0;
+    int numGrams = 0;
     unsigned n;
 };
 
