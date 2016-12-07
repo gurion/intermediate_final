@@ -31,6 +31,7 @@ string algs(string filename, char sense){
 	}
 
 	//check for repeated files
+	cout << "seg fault 1\n";
 	string file1;
 	string file2;
 	for (auto iter = v.begin(); iter != v.end(); iter++){
@@ -45,47 +46,47 @@ string algs(string filename, char sense){
 	//compare Ngrams
 	for (auto iter1 = colls.begin(); iter1 != colls.end(); iter1++){
 		coll1 = *iter1;
+		cout << "seg fault 2\n";
 		unsigned i = 0;
 		for (auto iter2 = iter1++; iter2 != colls.end(); iter2++){
 			numMatches = 0;
 			coll2 = *iter2;
+			cout << "seg fault 3\n";
 			unsigned j = i + 1;
 			if (j > v.size())
 				break;
 			int num1 = coll1.getNumWords();
 			int num2 = coll2.getNumWords();
-			if (num1 >= num2){
-				auto coll1iter = coll1.counts.begin();
-				auto coll2iter = coll2.counts.begin();
-				int val;
-				while (coll2iter != coll2.counts.end() && coll1iter != coll1.counts.end()){
-					val = compare(coll1iter->first, coll2iter->first);
-					if (val == 0){
-						numMatches++;
-						coll1iter++;
-						coll2iter++;
-						switch (sense){
-							case 'h':
-								if (numMatches >= coll2.getNumGrams()/25){
-									pairs += v.at(i) + " " + v.at(j) + "\n";
-								}
-								break;
-							case 'm':
-								if (numMatches >= coll2.getNumGrams()/10){
-									pairs += v.at(i) + " " + v.at(j) + "\n";
-								}				
-								break;				
-							case 'l':
-								if (numMatches >= coll2.getNumGrams()/4){
-									pairs += v.at(i) + " " + v.at(j) + "\n";
-								}				
-								break;												
-						}
-					} else if (val < 0){
-						coll1iter++;
-					} else if (val > 0){
-						coll2iter++;
+			auto coll1iter = coll1.counts.begin();
+			auto coll2iter = coll2.counts.begin();
+			int val;
+			while (coll2iter != coll2.counts.end() && coll1iter != coll1.counts.end()){
+				val = compare(coll1iter->first, coll2iter->first);
+				if (val == 0){
+					numMatches++;
+					coll1iter++;
+					coll2iter++;
+					switch (sense){
+						case 'h':
+							if (numMatches >= coll2.getNumGrams()/25){
+								pairs += v.at(i) + " " + v.at(j) + "\n";
+							}
+							break;
+						case 'm':
+							if (numMatches >= coll2.getNumGrams()/10){
+								pairs += v.at(i) + " " + v.at(j) + "\n";
+							}				
+							break;				
+						case 'l':
+							if (numMatches >= coll2.getNumGrams()/4){
+								pairs += v.at(i) + " " + v.at(j) + "\n";
+							}				
+							break;												
 					}
+				} else if (val < 0){
+					coll1iter++;
+				} else if (val > 0){
+					coll2iter++;
 				}
 			}
 		}
