@@ -39,8 +39,14 @@ string algs(string filename, char sense){
 			unsigned j = i + 1;
 			if (j > v.size())
 				break;
-			int num1 = (*iter1).getNumWords();
-			int num2 = (*iter2).getNumWords();
+			int num1 = (*iter1).getNumGrams();
+			int num2 = (*iter2).getNumGrams();
+			int number = 0;
+			if (num1 >= num2){
+			  number = num2;
+			} else {
+			  number = num1;
+			}
 			auto coll1iter = (*iter1).counts.begin();
 			auto coll2iter = (*iter2).counts.begin();
 			int val;
@@ -52,17 +58,17 @@ string algs(string filename, char sense){
 					coll2iter++;
 					switch (sense){
 						case 'h':
-						  if (numMatches >= (*iter2).getNumGrams()/25){
+						  if (numMatches >= number/25){
 								pairs += v.at(i) + " " + v.at(j) + "\n";
 							}
 							break;
 						case 'm':
-						  if (numMatches >= (*iter2).getNumGrams()/10){
+						  if (numMatches >= number/10){
 								pairs += v.at(i) + " " + v.at(j) + "\n";
 							}				
 							break;				
 						case 'l':
-						  if (numMatches >= (*iter2).getNumGrams()/4){
+						  if (numMatches >= number/4){
 								pairs += v.at(i) + " " + v.at(j) + "\n";
 							}				
 							break;												
