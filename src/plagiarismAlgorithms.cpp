@@ -62,19 +62,19 @@ string algs(string filename, char sense){
 							int breaker = 0;
 							switch (sense){
 								case 'h':
-									if (numMatches >= coll2.getNumGrams()/12){
+									if (numMatches >= coll2.getNumGrams()/20){
 										pairs += v.at(i) + " " + v.at(j) + "\n";
 										breaker = 1;
 										break;
 									}
 								case 'm':
-									if (numMatches >= coll2.getNumGrams()/6){
+									if (numMatches >= coll2.getNumGrams()/10){
 										pairs += v.at(i) + " " + v.at(j) + "\n";
 										breaker = 1;
 										break;
 									}								
 								case 'l':
-									if (numMatches >= coll2.getNumGrams()/3){
+									if (numMatches >= coll2.getNumGrams()/5){
 										pairs += v.at(i) + " " + v.at(j) + "\n";
 										breaker = 1;
 										break;
