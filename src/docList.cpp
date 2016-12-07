@@ -59,6 +59,3 @@ vector<NgramCollection> docList::makeDocs(docList files){
 	return docs;
 }
 */
-
-
-
