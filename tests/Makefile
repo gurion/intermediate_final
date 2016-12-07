@@ -1,7 +1,7 @@
 default: test
 
 clean:
-	rm -rf ./obj test
+	rm -rf *.o test
 
 rmother:
 	rm *.cpp~

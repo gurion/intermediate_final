@@ -18,7 +18,7 @@ public:
 
 	int checkFileList(std::string filename);
 
-	int getNumDocs() { return numDocs; };
+	int getNumDocs() { return numDocs; };	
 
 private:
 	std::vector<std::string> list;
