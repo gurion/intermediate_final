@@ -13,8 +13,6 @@ string algs(string filename, char sense){
 	docList docs;
 	int numMatches = 0;	
 	int numPairs = 0;
-	NgramCollection coll1(4);
-	NgramCollection coll2(4);
 
 	//check files
 	int check = docs.checkFileList(filename);
@@ -31,40 +29,13 @@ string algs(string filename, char sense){
 	  colls.at(counter).getInput(s);
 	  counter++;
 	}
-	/*
-	for (unsigned i = 0; i < v.size(); i++){
-		cout << i << " " << v.at(i) <<"\n";
-		NgramCollection coll(4);
-		colls.push_back(coll);
-		colls.at(i).getInput(v.at(i));
-	}
-	*/
-	cout <<"out of for";
-	/*
-	//check for repeated files
-	string file1;
-	string file2;
-	for (auto iter = v.begin(); iter != v.end() - 1; iter++){
-		cout << "in for";
-		file1 = *iter;
-		file2 = *(iter++);
-		if (file1 == file2){
-			pairs += file1 + " " + file2 + "\n";
-			numPairs++;			
-		}
-	}
-	cout << "out of for1";
-	*/	
+	
 	//compare Ngrams
 	cout << colls.size() << "size";
 	for (auto iter1 = colls.begin(); iter1 != colls.end() - 1; iter1++){	  
-		cout << "making coll1";
-		//coll1 = *iter1;
 		unsigned i = 0;
-		cout << "made coll1";
 		for (auto iter2 = iter1++; iter2 != colls.end(); iter2++){
 			numMatches = 0;
-			//coll2 = *iter2;
 			unsigned j = i + 1;
 			if (j > v.size())
 				break;
@@ -108,7 +79,6 @@ string algs(string filename, char sense){
 }
 
 int compare(vector<string> v1, vector<string> v2){
-	int value;
 	auto iter1 = v1.begin();
 	auto iter2 = v2.begin();
 	while (iter1 != v1.end() && iter2 != v2.end()){
