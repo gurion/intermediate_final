@@ -5,8 +5,8 @@
  * to write your own for the remaining functions
  */
 
-#include "catch.hpp" // simple unit-testing framework
-#include "NgramCollection.hpp" // header declaring the functions we want to test
+#include "../include/catch.hpp" // simple unit-testing framework
+#include "../include/NgramCollection.hpp" // header declaring the functions we want to test
 
 #include <iostream>
 #include <string>
