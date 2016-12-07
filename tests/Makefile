@@ -9,7 +9,7 @@ unitTestDriver.o: ../include/catch.hpp unitTestDriver.cpp
 unitTests-docList.o: ../include/catch.hpp ../include/docList.hpp ../include/NgramCollection.hpp unitTests-docList.cpp
 	g++ -std=c++11 -Wall -Wextra -pedantic -c unitTests-docList.cpp
 
-unitTests-NgramCollection.o: ../include/catch.hpp ../include/NgramCollection.hpp unitTests-plagiarismAlgorithms.cpp
+unitTests-NgramCollection.o: ../include/catch.hpp ../include/NgramCollection.hpp unitTests-NgramCollection.cpp
 	g++ -std=c++11 -Wall -Wextra -pedantic -c unitTests-NgramCollection.cpp
 
 unitTests-plagiarismAlgorithms.o: ../include/catch.hpp ../include/plagiarismAlgorithms.hpp ../include/docList.hpp ../include/NgramCollection.hpp unitTests-plagiarismAlgorithms.cpp
