@@ -45,6 +45,20 @@ void NgramCollection::increment(vector<string>::const_iterator begin, vector<str
 	counts[outerKey][*it]++;	
 }
 
+string NgramCollection::toString() const{
+  string str = "";
+  for (auto iterOuter = counts.begin(); iterOuter != counts.end(); iterOuter++){
+    map<string, unsigned> tempM = iterOuter->second;
+    for (auto iterInner = tempM.begin(); iterInner != tempM.end(); iterInner++){
+      vector<string> tempV = iterOuter->first;
+      for (auto it = tempV.begin(); it != tempV.end(); it++){
+    str += *it + " ";
+      }
+      str += iterInner->first + " " + std::to_string(iterInner->second) + "\n";
+    }
+  }
+  return str;
+}
 
 
 
