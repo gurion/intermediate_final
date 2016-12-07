@@ -13,8 +13,8 @@ string algs(string filename, char sense){
 	docList docs;
 	int numMatches = 0;	
 	int numPairs = 0;
-	NgramCollection coll1(3);
-	NgramCollection coll2(3);
+	NgramCollection coll1(4);
+	NgramCollection coll2(4);
 
 	//check files
 	int check = docs.checkFileList(filename);
@@ -25,7 +25,7 @@ string algs(string filename, char sense){
 	
 	//fill vector of Ngrams input
 	for (unsigned i = 0; i != v.size(); i++){
-		NgramCollection coll(3);
+		NgramCollection coll(4);
 		colls.push_back(coll);
 		colls.at(i).getInput(v.at(i));
 	}
@@ -47,6 +47,7 @@ string algs(string filename, char sense){
 		coll1 = *iter1;
 		unsigned i = 0;
 		for (auto iter2 = iter1++; iter2 != colls.end(); iter2++){
+			numMatches = 0;
 			coll2 = *iter2;
 			unsigned j = i + 1;
 			if (j > v.size())
@@ -54,98 +55,66 @@ string algs(string filename, char sense){
 			int num1 = coll1.getNumWords();
 			int num2 = coll2.getNumWords();
 			if (num1 >= num2){
-				for (auto coll1Iter = coll1.counts.begin(); coll1Iter != coll1.counts.end(); coll1Iter++){
-					int broken = 0;
-					for (auto coll2Iter = coll2.counts.begin(); coll2Iter != coll2.counts.end(); coll2Iter++){
-						if (coll1Iter->first == coll2Iter->first){
-							numMatches++;
-							int breaker = 0;
-							switch (sense){
-								case 'h':
-									if (numMatches >= coll2.getNumGrams()/20){
-										pairs += v.at(i) + " " + v.at(j) + "\n";
-										breaker = 1;
-										break;
-									}
-								case 'm':
-									if (numMatches >= coll2.getNumGrams()/10){
-										pairs += v.at(i) + " " + v.at(j) + "\n";
-										breaker = 1;
-										break;
-									}								
-								case 'l':
-									if (numMatches >= coll2.getNumGrams()/5){
-										pairs += v.at(i) + " " + v.at(j) + "\n";
-										breaker = 1;
-										break;
-									}																
-							}
-							if (breaker == 1){
-								broken = 1;
+				auto coll1iter = coll1.counts.begin();
+				auto coll2iter = coll2.counts.begin();
+				int val;
+				while (coll2iter != coll2.counts.end() && coll1iter != coll1.counts.end()){
+					val = compare(coll1iter->first, coll2iter->first);
+					if (val == 0){
+						numMatches++;
+						coll1iter++;
+						coll2iter++;
+						switch (sense){
+							case 'h':
+								if (numMatches >= coll2.getNumGrams()/25){
+									pairs += v.at(i) + " " + v.at(j) + "\n";
+								}
 								break;
-							}
+							case 'm':
+								if (numMatches >= coll2.getNumGrams()/10){
+									pairs += v.at(i) + " " + v.at(j) + "\n";
+								}				
+								break;				
+							case 'l':
+								if (numMatches >= coll2.getNumGrams()/4){
+									pairs += v.at(i) + " " + v.at(j) + "\n";
+								}				
+								break;												
 						}
+					} else if (val < 0){
+						coll1iter++;
+					} else if (val > 0){
+						coll2iter++;
 					}
-					if (broken == 1)
-						break;
-				}
-			} else {
-				for (auto coll2Iter = coll2.counts.begin(); coll2Iter != coll2.counts.end(); coll2Iter++){
-					int broken = 0;
-					for (auto coll1Iter = coll1.counts.begin(); coll1Iter != coll1.counts.end(); coll1Iter++){
-						if (coll1Iter->first == coll2Iter->first){
-							numMatches++;
-							if (numMatches >= coll1.getNumGrams()/5){
-								pairs += v.at(i) + " " + v.at(j) + "\n";
-								broken = 1;
-								break;
-							}
-						}
-					}
-					if (broken == 1)
-						break;
 				}
 			}
-			j++;
 		}
-		i++;
 	}
 	return pairs;
 }
-/*
-string medAlgs(string filename){
-	string pairs = "";
-	
-	NgramCollection coll1(3);
-	NgramCollection coll2(3);
-	
-	docList docs;
-	int numMatches = 0;
-	int numPairs = 0;
 
-	int check = docs.checkFileList(filename);
-	if (check == 0)
-		return "ERROR - Bad file input.\n";
-	vector<string> v = docs.makeList(filename);
-
-	return pairs;
+int compare(vector<string> v1, vector<string> v2){
+	int value;
+	auto iter1 = v1.begin();
+	auto iter2 = v2.begin();
+	while (iter1 != v1.end() && iter2 != v2.end()){
+		if ((*iter1).compare(*iter2) < 0){
+			value = -1;
+		} else if ((*iter1).compare(*iter2) > 0){
+			value = 1;
+		} else {
+			iter1++;
+			iter2++;
+		}
+	}
+	value = 0;
+	return value;
 }
 
-string highAlgs(string filename){
-	string pairs = "";
-	
-	NgramCollection coll1(3);
-	NgramCollection coll2(3);
-	
-	docList docs;
-	int numMatches = 0;
-	int numPairs = 0;
 
-	int check = docs.checkFileList(filename);
-	if (check == 0)
-		return "ERROR - Bad file input.\n";
-	vector<string> v = docs.makeList(filename);
 
-	return pairs;
-}
-*/
+
+
+
+
+
