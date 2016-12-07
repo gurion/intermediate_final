@@ -24,10 +24,10 @@ string lowAlgs(string filename){
 
 	for (auto it = v.begin(); it != v.end(); it++){
 		int numWords1 = coll1.getInput(*it);
-		cout << "got file " << *it;
+		cout << "got file 1" << *it << " ";
 		for (auto it2 = it + 1; it2 != v.end(); it2++){
 			int numWords2 = coll2.getInput(*it2);
-			cout << "got file " << *it;
+			cout << "got file 2" << *it << "\n";			
 			//check for repeated file
 			if (*it == *it2){
 				pairs += *it + " " + *it2 + "\n";
