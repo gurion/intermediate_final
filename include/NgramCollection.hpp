@@ -27,9 +27,7 @@ public:
 
     int getNumGrams() const {return numGrams;}
 
-    friend std::string lowAlgs(std::string filename);
-    friend std::string medAlgs(std::string filename);
-    friend std::string highAlgs(std::string filename);
+    friend std::string algs(std::string filename, char sense);
 
 private:
     std::map<std::vector<std::string>, std::map<std::string, unsigned>> counts;
