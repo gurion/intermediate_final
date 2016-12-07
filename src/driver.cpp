@@ -16,7 +16,7 @@ int main(){
 	cin >> filestring;
 	cout << "Now please enter the sensitivity you'd like to use - High (h), Medium (m), or low (l): \n";
 	cin >> choiceChar;
-	tolower(choiceChar);
+	choiceChar = tolower(choiceChar);
 	while (choiceChar != 'h' && choiceChar != 'm' && choiceChar != 'l'){
 		cout << "Invalid option, please enter one of (h, m, or l): ";
 		cin >> choiceChar;
