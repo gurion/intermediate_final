@@ -44,10 +44,12 @@ string lowAlgs(string filename){
 
 	for (auto iter1 = colls.begin(); iter1 != colls.end(); iter1++){
 		coll1 = *iter1;
-		int i = 0;
+		unsigned i = 0;
 		for (auto iter2 = iter1++; iter2 != colls.end(); iter2++){
 			coll2 = *iter2;
-			int j = i + 1;
+			unsigned j = i + 1;
+			if (j > v.size())
+				break;
 			int num1 = coll1.getNumWords();
 			int num2 = coll2.getNumWords();
 			if (num1 >= num2){
