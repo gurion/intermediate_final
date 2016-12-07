@@ -22,8 +22,8 @@ using std::list;
 TEST_CASE("getN", "[getN]") {
   NgramCollection g3(3);
   NgramCollection g4(4);
-  REQUIRE(g3.getN() == 3);
-  REQUIRE(g4.getN() == 4);
+  CATCH(g3.getN() == 3);
+  CATCH(g4.getN() == 4);
 }
 
 
@@ -36,16 +36,16 @@ TEST_CASE("getN", "[getN]") {
  */
 TEST_CASE("toString when empty", "[toString]") {
   NgramCollection g3(3);
-  REQUIRE(g3.toString() == "");
-  REQUIRE(g3.toString('a') == "");
-  REQUIRE(g3.toString('r') == "");
-  REQUIRE(g3.toString('c') == "");
+  CATCH(g3.toString() == "");
+  CATCH(g3.toString('a') == "");
+  CATCH(g3.toString('r') == "");
+  CATCH(g3.toString('c') == "");
 
   NgramCollection g4(4);
-  REQUIRE(g4.toString() == "");
-  REQUIRE(g4.toString('a') == "");
-  REQUIRE(g4.toString('r') == "");
-  REQUIRE(g4.toString('c') == "");
+  CATCH(g4.toString() == "");
+  CATCH(g4.toString('a') == "");
+  CATCH(g4.toString('r') == "");
+  CATCH(g4.toString('c') == "");
 
 }
 
@@ -63,29 +63,29 @@ TEST_CASE("toString after increment", "[toString],[increment]") {
   v.push_back("seven");
   
   g3.increment(v.begin(), v.end()-1);
-  REQUIRE(g3.toString() == "Four score and 1\n");
-  REQUIRE(g3.toString('a') == "Four score and 1\n");
-  REQUIRE(g3.toString('r') == "Four score and 1\n");
-  REQUIRE(g3.toString('c') == "Four score and 1\n");
+  CATCH(g3.toString() == "Four score and 1\n");
+  CATCH(g3.toString('a') == "Four score and 1\n");
+  CATCH(g3.toString('r') == "Four score and 1\n");
+  CATCH(g3.toString('c') == "Four score and 1\n");
 
   g3.increment(v.begin()+1, v.end());
-  REQUIRE(g3.toString() == "Four score and 1\nscore and seven 1\n");
-  REQUIRE(g3.toString('a') == "Four score and 1\nscore and seven 1\n");
-  REQUIRE(g3.toString('r') == "score and seven 1\nFour score and 1\n");
-  REQUIRE(g3.toString('c') == "Four score and 1\nscore and seven 1\n");
+  CATCH(g3.toString() == "Four score and 1\nscore and seven 1\n");
+  CATCH(g3.toString('a') == "Four score and 1\nscore and seven 1\n");
+  CATCH(g3.toString('r') == "score and seven 1\nFour score and 1\n");
+  CATCH(g3.toString('c') == "Four score and 1\nscore and seven 1\n");
 
   g3.increment(v.begin(), v.end()-1);
-  REQUIRE(g3.toString() == "Four score and 2\nscore and seven 1\n");  
-  REQUIRE(g3.toString('a') == "Four score and 2\nscore and seven 1\n");  
-  REQUIRE(g3.toString('r') == "score and seven 1\nFour score and 2\n");
-  REQUIRE(g3.toString('c') == "score and seven 1\nFour score and 2\n");
+  CATCH(g3.toString() == "Four score and 2\nscore and seven 1\n");  
+  CATCH(g3.toString('a') == "Four score and 2\nscore and seven 1\n");  
+  CATCH(g3.toString('r') == "score and seven 1\nFour score and 2\n");
+  CATCH(g3.toString('c') == "score and seven 1\nFour score and 2\n");
 
   g3.increment(v.begin()+1, v.end());
   g3.increment(v.begin()+1, v.end());
-  REQUIRE(g3.toString() == "Four score and 2\nscore and seven 3\n");
-  REQUIRE(g3.toString('a') == "Four score and 2\nscore and seven 3\n");
-  REQUIRE(g3.toString('r') == "score and seven 3\nFour score and 2\n");
-  REQUIRE(g3.toString('c') == "Four score and 2\nscore and seven 3\n");
+  CATCH(g3.toString() == "Four score and 2\nscore and seven 3\n");
+  CATCH(g3.toString('a') == "Four score and 2\nscore and seven 3\n");
+  CATCH(g3.toString('r') == "score and seven 3\nFour score and 2\n");
+  CATCH(g3.toString('c') == "Four score and 2\nscore and seven 3\n");
 }
 
 
@@ -163,11 +163,11 @@ TEST_CASE("pickWord four-grams when only one valid choice", "[pickWord]") {
   end_list = std::next(end_list);
   end_list = std::next(end_list);
   end_list = std::next(end_list);  //now points to "dream"
-  REQUIRE(g4.pickWord(begin_list, end_list) == "dream");
+  CATCH(g4.pickWord(begin_list, end_list) == "dream");
 
   begin_list++; //now points to "have"
   end_list = std::next(end_list); //now points to "that"
-  REQUIRE(g4.pickWord(begin_list, end_list) == "that");
+  CATCH(g4.pickWord(begin_list, end_list) == "that");
 
 }
 
@@ -223,7 +223,7 @@ TEST_CASE("pickWord with some options", "[pickWord]") {
   //Finally, test: was "will" three times as likely as "can"?
   //Ideally should be .75 and .25, but because it's random we'll use an
   //"epsilon" of 3% since it won't be exact
-  REQUIRE((will / (double) numTrials) == Approx(0.75).epsilon(0.03));
-  REQUIRE((can / (double) numTrials) == Approx(0.25).epsilon(0.03));
+  CATCH((will / (double) numTrials) == Approx(0.75).epsilon(0.03));
+  CATCH((can / (double) numTrials) == Approx(0.25).epsilon(0.03));
 
 }
