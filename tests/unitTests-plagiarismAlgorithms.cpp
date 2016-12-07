@@ -11,10 +11,11 @@
 using std::string;
 using std::vector;
 using std::list;
-using std::cout;
 using std::ifstream;
 
+/*
 TEST_CASE() {
   
   CHECK();
 }
+*/
