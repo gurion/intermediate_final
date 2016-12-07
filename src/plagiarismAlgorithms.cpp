@@ -11,8 +11,7 @@ using std::ifstream;
 string algs(string filename, char sense){
 	string pairs = "The following pairs are suspicious:\n";
 	docList docs;
-	int numMatches = 0;
-	int numTimes = 0;
+	int numMatches = 0;	
 	int numPairs = 0;
 	NgramCollection coll1(3);
 	NgramCollection coll2(3);
@@ -116,7 +115,7 @@ string algs(string filename, char sense){
 /*
 string medAlgs(string filename){
 	string pairs = "";
-	/*
+	
 	NgramCollection coll1(3);
 	NgramCollection coll2(3);
 	
@@ -134,7 +133,7 @@ string medAlgs(string filename){
 
 string highAlgs(string filename){
 	string pairs = "";
-	/*
+	
 	NgramCollection coll1(3);
 	NgramCollection coll2(3);
 	
