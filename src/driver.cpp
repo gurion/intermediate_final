@@ -7,19 +7,28 @@ using std::vector;
 using std::cout;
 using std::cin;
 
-int main(){
+int main(int argc, char* argv[]){
 	string filestring;
 	char choiceChar;
 	string output;
 	cout << "Welcome to Gurion's Plagiarism Checker.\n\n";
 	cout << "Please enter the name of your file (including extension) containing all the files you want to check: \n";
-	cin >> filestring;
 	cout << "Now please enter the sensitivity you'd like to use - High (h), Medium (m), or low (l): \n";
-	cin >> choiceChar;
-	choiceChar = tolower(choiceChar);
-	while (choiceChar != 'h' && choiceChar != 'm' && choiceChar != 'l'){
-		cout << "Invalid option, please enter one of (h, m, or l): ";
-		cin >> choiceChar;
+	if (argc > 3 || argc <= 1){
+		cout << "ERROR - Invalid arguments.\n Goodbye!\n\n";
+		return 0;
+	}
+	if (argc == 2){
+		filestring = argv[1];
+		choiceChar = 'm';
+	}
+	if (argc == 3){
+		filestring = argv[1];
+		choiceChar = argv[2][0];
+		choiceChar = tolower(choiceChar);
+		if (choiceChar != 'h' && choiceChar != 'm' && choiceChar != 'l'){
+			cout << "Invalid sensitivity, program terminated. Goodbye!";
+		}
 	}
 	if (choiceChar == 'h')
 		output = highAlgs(filestring);
