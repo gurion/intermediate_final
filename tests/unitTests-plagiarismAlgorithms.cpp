@@ -16,5 +16,5 @@ using std::ifstream;
 
 TEST_CASE() {
   
-  REQUIRE();
+  CHECK();
 }

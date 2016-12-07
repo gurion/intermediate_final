@@ -5,7 +5,7 @@
  * to write your own for the remaining functions
  */
 
-#include "../include/catch.hpp" // simple unit-testing framework
+#include "../include/CHECK.hpp" // simple unit-testing framework
 #include "../include/NgramCollection.hpp" // header declaring the functions we want to test
 
 #include <iostream>
@@ -22,8 +22,8 @@ using std::list;
 TEST_CASE("getN", "[getN]") {
   NgramCollection g3(3);
   NgramCollection g4(4);
-  CATCH(g3.getN() == 3);
-  CATCH(g4.getN() == 4);
+  CHECK(g3.getN() == 3);
+  CHECK(g4.getN() == 4);
 }
 
 
@@ -37,16 +37,16 @@ TEST_CASE("getN", "[getN]") {
 TEST_CASE("toString when empty", "[toString]") {
   NgramCollection g3(3);
 <<<<<<< HEAD
-  CATCH(g3.toString() == "");
-  CATCH(g3.toString('a') == "");
-  CATCH(g3.toString('r') == "");
-  CATCH(g3.toString('c') == "");
+  CHECK(g3.toString() == "");
+  CHECK(g3.toString('a') == "");
+  CHECK(g3.toString('r') == "");
+  CHECK(g3.toString('c') == "");
 
   NgramCollection g4(4);
-  CATCH(g4.toString() == "");
-  CATCH(g4.toString('a') == "");
-  CATCH(g4.toString('r') == "");
-  CATCH(g4.toString('c') == "");
+  CHECK(g4.toString() == "");
+  CHECK(g4.toString('a') == "");
+  CHECK(g4.toString('r') == "");
+  CHECK(g4.toString('c') == "");
 
 =======
   REQUIRE(g3.toString() == "");
@@ -71,29 +71,29 @@ TEST_CASE("toString after increment", "[toString],[increment]") {
   
   g3.increment(v.begin(), v.end()-1);
 <<<<<<< HEAD
-  CATCH(g3.toString() == "Four score and 1\n");
-  CATCH(g3.toString('a') == "Four score and 1\n");
-  CATCH(g3.toString('r') == "Four score and 1\n");
-  CATCH(g3.toString('c') == "Four score and 1\n");
+  CHECK(g3.toString() == "Four score and 1\n");
+  CHECK(g3.toString('a') == "Four score and 1\n");
+  CHECK(g3.toString('r') == "Four score and 1\n");
+  CHECK(g3.toString('c') == "Four score and 1\n");
 
   g3.increment(v.begin()+1, v.end());
-  CATCH(g3.toString() == "Four score and 1\nscore and seven 1\n");
-  CATCH(g3.toString('a') == "Four score and 1\nscore and seven 1\n");
-  CATCH(g3.toString('r') == "score and seven 1\nFour score and 1\n");
-  CATCH(g3.toString('c') == "Four score and 1\nscore and seven 1\n");
+  CHECK(g3.toString() == "Four score and 1\nscore and seven 1\n");
+  CHECK(g3.toString('a') == "Four score and 1\nscore and seven 1\n");
+  CHECK(g3.toString('r') == "score and seven 1\nFour score and 1\n");
+  CHECK(g3.toString('c') == "Four score and 1\nscore and seven 1\n");
 
   g3.increment(v.begin(), v.end()-1);
-  CATCH(g3.toString() == "Four score and 2\nscore and seven 1\n");  
-  CATCH(g3.toString('a') == "Four score and 2\nscore and seven 1\n");  
-  CATCH(g3.toString('r') == "score and seven 1\nFour score and 2\n");
-  CATCH(g3.toString('c') == "score and seven 1\nFour score and 2\n");
+  CHECK(g3.toString() == "Four score and 2\nscore and seven 1\n");  
+  CHECK(g3.toString('a') == "Four score and 2\nscore and seven 1\n");  
+  CHECK(g3.toString('r') == "score and seven 1\nFour score and 2\n");
+  CHECK(g3.toString('c') == "score and seven 1\nFour score and 2\n");
 
   g3.increment(v.begin()+1, v.end());
   g3.increment(v.begin()+1, v.end());
-  CATCH(g3.toString() == "Four score and 2\nscore and seven 3\n");
-  CATCH(g3.toString('a') == "Four score and 2\nscore and seven 3\n");
-  CATCH(g3.toString('r') == "score and seven 3\nFour score and 2\n");
-  CATCH(g3.toString('c') == "Four score and 2\nscore and seven 3\n");
+  CHECK(g3.toString() == "Four score and 2\nscore and seven 3\n");
+  CHECK(g3.toString('a') == "Four score and 2\nscore and seven 3\n");
+  CHECK(g3.toString('r') == "score and seven 3\nFour score and 2\n");
+  CHECK(g3.toString('c') == "Four score and 2\nscore and seven 3\n");
 }
 
 
@@ -171,11 +171,11 @@ TEST_CASE("pickWord four-grams when only one valid choice", "[pickWord]") {
   end_list = std::next(end_list);
   end_list = std::next(end_list);
   end_list = std::next(end_list);  //now points to "dream"
-  CATCH(g4.pickWord(begin_list, end_list) == "dream");
+  CHECK(g4.pickWord(begin_list, end_list) == "dream");
 
   begin_list++; //now points to "have"
   end_list = std::next(end_list); //now points to "that"
-  CATCH(g4.pickWord(begin_list, end_list) == "that");
+  CHECK(g4.pickWord(begin_list, end_list) == "that");
 
 }
 
@@ -231,8 +231,8 @@ TEST_CASE("pickWord with some options", "[pickWord]") {
   //Finally, test: was "will" three times as likely as "can"?
   //Ideally should be .75 and .25, but because it's random we'll use an
   //"epsilon" of 3% since it won't be exact
-  CATCH((will / (double) numTrials) == Approx(0.75).epsilon(0.03));
-  CATCH((can / (double) numTrials) == Approx(0.25).epsilon(0.03));
+  CHECK((will / (double) numTrials) == Approx(0.75).epsilon(0.03));
+  CHECK((can / (double) numTrials) == Approx(0.25).epsilon(0.03));
 
 }
 =======

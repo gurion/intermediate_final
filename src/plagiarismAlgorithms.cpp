@@ -24,8 +24,8 @@ string algs(string filename, char sense){
 	vector<NgramCollection> colls;
 	
 	//fill vector of Ngrams input
-	NgramCollection coll(3);
 	for (unsigned i = 0; i != v.size(); i++){
+		NgramCollection coll(3);
 		colls.push_back(coll);
 		colls.at(i).getInput(v.at(i));
 	}
