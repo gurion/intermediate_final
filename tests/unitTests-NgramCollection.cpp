@@ -57,3 +57,8 @@ TEST_CASE("toString after increment", "[toString],[increment]") {
   g3.increment(v.begin()+1, v.end());
   CHECK(g3.toString() == "Four score and 2\nscore and seven 3\n");
 }
+
+TEST_CASE("getInput", "[getInput]") {
+  NgramCollection g3(3);
+  CHECK(g3.getInput("testfile2.txt") == 0);
+}
