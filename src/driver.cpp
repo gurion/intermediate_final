@@ -10,7 +10,6 @@ using std::cout;
 using std::cin;
 
 int main(int argc, char* argv[]){
-<<<<<<< HEAD
 	int start_s = clock();
 	string filestring;
 	char choiceChar;
@@ -48,7 +47,6 @@ int main(int argc, char* argv[]){
 	cout << "It took the program " << (stop_s - start_s)/double(CLOCKS_PER_SEC) << " seconds to run.\n\n";
 	cout << "Goodbye, have a beautiful time!";
 	return 0;
-=======
   string filestring;
   char choiceChar;
   string output;
@@ -78,5 +76,4 @@ int main(int argc, char* argv[]){
   cout << output;
   
   return 0;
->>>>>>> b499db5f1f1d8b0c1c0afc6ea634ccb5468b30f7
 }
