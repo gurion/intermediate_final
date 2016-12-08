@@ -11,11 +11,11 @@ using std::cout;
 int NgramCollection::getInput(string filename){
     //initialize variables, check data
     ifstream in(filename);
-    string str;
+    string str = "";
     vector<string> words;
     while (in >> str){
     	words.push_back(str);
- 		numWords++;
+ 	numWords++;
     }
     in.close();
     if (words.size() == 0){

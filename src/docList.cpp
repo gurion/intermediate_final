@@ -44,18 +44,3 @@ vector<string> docList::makeList(string filename){
 		return list;
 	}
 }
-
-/*
-vector<NgramCollection> docList::makeDocs(docList files){
-	vector<NgramCollection> docs;
-	for (int i = 1; i < files.getNumDocs()){
-		string str = "coll" + to_string(i);
-		new NgramCollection str(3);
-
-	}
-	for (auto iter = filelist.begin(); iter != filelist.end(); iter++){
-		
-	}
-	return docs;
-}
-*/
