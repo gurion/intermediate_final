@@ -15,13 +15,14 @@ This is the final project for Intermediate Programming - to design and build a p
 
 2) Testing
    Run make in the tests directory. An executable called test will be created that runs unit tests on functions used.
-
+   
 3) Plan of Attack
 	I initially thought to make a "document" class, which essentially would just hold an Ngram collection. Each file would be turned into an Ngram collection, stored in a document, a class called docList would hold a vector of documents. I realized that this would be an unnecessary middle step, and just made a vector of Ngram collections as needed. Therefore I took out the middle document class, and slightly modified Ngram collection for added functionality. DocList then just holds a list of the file names, and an Ngram collection is created for each file and stored in a vector during plagiarism checking step. The algorithm builds a string of file pairs which gets printed by the driver.  
 
 	The plagiarism algorithms are held in a file called plagiarism algorithms. I'm essentially using the fingerprint method - if a certain percentage of Ngrams in the smaller file match Ngrams in the larger file, then the pair is classified as plagiarism. Therefore I can just use a switch statement and modify the percentage. Sensitivities are classified as follows: h - 5%, m - 10%, l - 20%.
 
 4) Design
+   Directory: src
 	Class: NgramCollection
 		Description - This class holds functions for getting input from a file and turning it into an NgramCollection.
 		Function: getInput
@@ -41,11 +42,41 @@ This is the final project for Intermediate Programming - to design and build a p
 		
 	File: Driver
 		Holds main method for the program, and deals with input.
+	
+	File: Makefile
+		Links and compiles files to produce executable.
+
+   Directory: tests
+   	File: unitTestDriver.cpp
+	File: unitTests-NgramCollection.cpp
+	File: unitTests-docList.cpp
+	File: unitTests-plagiarismAlgorithms.cpp
+	File: Makefile
+	Text Files: 
+	     test1doc1.txt  
+	     test1doc2.txt  
+	     test1doc3.txt  
+	     test3doc1.txt  
+	     test3doc2.txt  
+	     test3doc3.txt  
+	     test3doc4.txt  
+	     test3doc5.txt  
+	Lists of Test Files:
+	     testfile1.txt 
+	     testfile2.txt
+	     testfile3.txt
+   
+   Directory: include
+   	File: catch.hpp
+	File: docList.hpp
+	File: NgramCollection.hpp
+	File: plagiarismAlgorithms.hpp
 
 5) Flags
    Sensitivities are classified as follows: h - 5%, m - 10%, l - 20%.
 
 6) Timing
+      
 
 7) Challenges
    I had initial challenges on trying to figure out how to best get and store input in order to make the program efficient.

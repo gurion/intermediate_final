@@ -58,7 +58,8 @@ string algs(string filename, char sense){
 			auto coll2iter = coll2.counts.begin();
 			int val;
 			while (coll2iter != coll2.counts.end() && coll1iter != coll1.counts.end()){
-				val = compare(coll1iter->first, coll2iter->first);
+			  int broken = 0;
+			        val = compare(coll1iter->first, coll2iter->first);
 				if (val == 0){
 					numMatches++;
 					coll1iter++;
@@ -67,16 +68,19 @@ string algs(string filename, char sense){
 						case 'h':
 							if (numMatches >= coll2.getNumGrams()/25){
 								pairs += v.at(i) + " " + v.at(j) + "\n";
+								int broken = 1;
 							}
 							break;
 						case 'm':
 							if (numMatches >= coll2.getNumGrams()/10){
 								pairs += v.at(i) + " " + v.at(j) + "\n";
+								int broken = 1;
 							}				
 							break;				
 						case 'l':
 							if (numMatches >= coll2.getNumGrams()/4){
 								pairs += v.at(i) + " " + v.at(j) + "\n";
+								int broken = 1;
 							}				
 							break;												
 					}
@@ -84,6 +88,9 @@ string algs(string filename, char sense){
 					coll1iter++;
 				} else if (val > 0){
 					coll2iter++;
+				}
+				if (broken == 1){
+					break;
 				}
 			}
 		}
