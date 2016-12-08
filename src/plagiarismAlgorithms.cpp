@@ -31,9 +31,9 @@ string algs(string filename, char sense){
   //compare Ngram
   unsigned i = 0;
   for (auto iter1 = colls.begin(); iter1 != colls.end() - 1; iter1++){
+    unsigned j = i + 1;
     for (auto iter2 = iter1++; iter2 != colls.end(); iter2++){
       numMatches = 0;
-      unsigned j = i + 1;
       if (j > v.size())
 	break;
       int num1 = (*iter1).getNumGrams();
