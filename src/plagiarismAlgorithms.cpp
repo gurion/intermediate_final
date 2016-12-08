@@ -29,8 +29,7 @@ string algs(string filename, char sense){
 	  counter++;
 	}
 	
-	//compare Ngrams
-	cout << colls.size() << "size";
+	//compare Ngram
 	for (auto iter1 = colls.begin(); iter1 != colls.end() - 1; iter1++){	  
 		unsigned i = 0;
 		for (auto iter2 = iter1++; iter2 != colls.end(); iter2++){

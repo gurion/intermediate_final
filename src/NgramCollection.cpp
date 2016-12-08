@@ -31,7 +31,6 @@ int NgramCollection::getInput(string filename){
     	end++;
         numGrams++;
     }
-    cout << numWords << "words";
     return numWords;
 }
 
