@@ -92,7 +92,9 @@ string algs(string filename, char sense){
 					break;
 				}
 			}
+			j++;
 		}
+		i++;
 	}
 	return pairs;
 }
