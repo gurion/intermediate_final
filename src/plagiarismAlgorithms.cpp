@@ -12,7 +12,6 @@ string algs(string filename, char sense){
 	string pairs = "The following pairs are suspicious:\n";
 	docList docs;
 	int numMatches = 0;	
-	int numPairs = 0;
 
 	//check files
 	int check = docs.checkFileList(filename);
@@ -50,6 +49,7 @@ string algs(string filename, char sense){
 			auto coll1iter = (*iter1).counts.begin();
 			auto coll2iter = (*iter2).counts.begin();
 			int val;
+			int broken = 0;
 			while (coll2iter != (*iter2).counts.end() && coll1iter != (*iter1).counts.end()){
 				val = compare(coll1iter->first, coll2iter->first);
 				if (val == 0){
@@ -60,18 +60,24 @@ string algs(string filename, char sense){
 						case 'h':
 						  if (numMatches >= number/25){
 								pairs += v.at(i) + " " + v.at(j) + "\n";
+								broken = 1;
 							}
 							break;
 						case 'm':
 						  if (numMatches >= number/10){
 								pairs += v.at(i) + " " + v.at(j) + "\n";
+								broken = 1;
 							}				
 							break;				
 						case 'l':
 						  if (numMatches >= number/4){
 								pairs += v.at(i) + " " + v.at(j) + "\n";
+								broken = 1;
 							}				
 							break;												
+					}
+					if (broken == 1){
+					  break;
 					}
 				} else if (val < 0){
 					coll1iter++;
