@@ -10,6 +10,7 @@ using std::cout;
 using std::cin;
 
 int main(int argc, char* argv[]){
+<<<<<<< HEAD
 	int start_s = clock();
 	string filestring;
 	char choiceChar;
@@ -47,4 +48,35 @@ int main(int argc, char* argv[]){
 	cout << "It took the program " << (stop_s - start_s)/double(CLOCKS_PER_SEC) << " seconds to run.\n\n";
 	cout << "Goodbye, have a beautiful time!";
 	return 0;
+=======
+  string filestring;
+  char choiceChar;
+  string output;
+  cout << "\nWelcome to Gurion's Plagiarism Checker.\n\n";
+  if (argc > 3 || argc <= 1){
+    cout << "ERROR - Invalid arguments.\n Goodbye!\n\n";
+    return 0;
+  }
+  if (argc == 2){
+    filestring = argv[1];
+    choiceChar = 'm';
+  }
+  if (argc == 3){
+    filestring = argv[1];
+    choiceChar = argv[2][0];
+    choiceChar = tolower(choiceChar);
+    if (choiceChar != 'h' && choiceChar != 'm' && choiceChar != 'l'){
+      cout << "Invalid sensitivity, program terminated. Goodbye!";
+    }
+  }
+  
+  output = algs(filestring, choiceChar);
+  
+  if (output != "ERROR - Bad file input.")
+    cout << "The following pairs of files have been marked as suspiciously similar: \n\n";
+  
+  cout << output;
+  
+  return 0;
+>>>>>>> b499db5f1f1d8b0c1c0afc6ea634ccb5468b30f7
 }

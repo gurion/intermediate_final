@@ -1,4 +1,5 @@
 #include "../include/NgramCollection.hpp"
+#include <cassert>
 
 using std::vector;
 using std::string;
@@ -36,13 +37,14 @@ int NgramCollection::getInput(string filename){
 
 //creates N-grams, adds to map
 void NgramCollection::increment(vector<string>::const_iterator begin, vector<string>::const_iterator end){
-	vector<string> outerKey;
-	vector<string>::const_iterator it;
-	//push into vector
-	for (it = begin; it != end-1; it++){
-		outerKey.push_back(*it);
-	}
-	counts[outerKey][*it]++;	
+  assert(end - begin == n); //make sure we've got the right number of words
+  vector<string> outerKey;
+  vector<string>::const_iterator it;
+  //push into vector
+  for (it = begin; it != end-1; it++){
+    outerKey.push_back(*it);
+  }
+  counts[outerKey][*it]++;
 }
 
 string NgramCollection::toString() const{
@@ -59,12 +61,3 @@ string NgramCollection::toString() const{
   }
   return str;
 }
-
-
-
-
-
-
-
-
-
