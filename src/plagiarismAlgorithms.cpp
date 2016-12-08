@@ -9,15 +9,14 @@ using std::ifstream;
 
 //plagiarism algorithm
 string algs(string filename, char sense){
-<<<<<<< HEAD
-	string pairs = "";
-	docList docs;
-	int numMatches = 0;	
-=======
-  string pairs = "The following pairs are suspicious:\n";
+
+  string pairs = "";
   docList docs;
   int numMatches = 0;	
->>>>>>> b499db5f1f1d8b0c1c0afc6ea634ccb5468b30f7
+
+  string pairs = "The following pairs are suspicious:\n";
+  docList docs;
+  int numMatches = 0;
 
   //check files
   int check = docs.checkFileList(filename);
@@ -93,71 +92,69 @@ string algs(string filename, char sense){
 	} else if (val > 0){
 	  coll2iter++;
 	}
-<<<<<<< HEAD
 	
 	//compare Ngram
 	unsigned i = 0;
 	for (auto iter1 = colls.begin(); iter1 != colls.end() - 1; iter1++){	 
-		for (auto iter2 = iter1++; iter2 != colls.end(); iter2++){
-			numMatches = 0;
-			unsigned j = i + 1;
-			if (j > v.size())
-				break;
-			int num1 = (*iter1).getNumGrams();
-			int num2 = (*iter2).getNumGrams();
-			int number = 0;
-			if (num1 >= num2){
-			  number = num2;
-			} else {
-			  number = num1;
-			}
-			auto coll1iter = (*iter1).counts.begin();
-			auto coll2iter = (*iter2).counts.begin();
-			int val;
-			val = compare(coll1iter->first, coll2iter->first);
-			int broken = 0;
-			while (coll2iter != (*iter2).counts.end() && coll1iter != (*iter1).counts.end()){
-				val = compare(coll1iter->first, coll2iter->first);
-				if (val == 0){
-					numMatches++;
-					coll1iter++;
-					coll2iter++;
-					switch (sense){
-						case 'h':
-						  	if (numMatches >= number/25){
-								pairs += v.at(i) + " " + v.at(j) + "\n";
-								broken = 1;
-							}
-							break;
-						case 'm':
-						  	if (numMatches >= number/5){
-								pairs += v.at(i) + " " + v.at(j) + "\n";
-								broken = 1;
-							}				
-							break;				
-						case 'l':
-						  	if (numMatches >= number*2/5){
-								pairs += v.at(i) + " " + v.at(j) + "\n";
-								broken = 1;
-							}				
-							break;												
-					}
-				} else if (val < 0){
-					coll1iter++;
-				} else if (val > 0){
-					coll2iter++;
-				}
-				if (broken == 1){
-					break;
-				}
-			}
-			j++;
+	  for (auto iter2 = iter1++; iter2 != colls.end(); iter2++){
+	    numMatches = 0;
+	    unsigned j = i + 1;
+	    if (j > v.size())
+	      break;
+	    int num1 = (*iter1).getNumGrams();
+	    int num2 = (*iter2).getNumGrams();
+	    int number = 0;
+	    if (num1 >= num2){
+	      number = num2;
+	    } else {
+	      number = num1;
+	    }
+	    auto coll1iter = (*iter1).counts.begin();
+	    auto coll2iter = (*iter2).counts.begin();
+	    int val;
+	    val = compare(coll1iter->first, coll2iter->first);
+	    int broken = 0;
+	    while (coll2iter != (*iter2).counts.end() && coll1iter != (*iter1).counts.end()){
+	      val = compare(coll1iter->first, coll2iter->first);
+	      if (val == 0){
+		numMatches++;
+		coll1iter++;
+		coll2iter++;
+		switch (sense){
+		case 'h':
+		  if (numMatches >= number/25){
+		    pairs += v.at(i) + " " + v.at(j) + "\n";
+		    broken = 1;
+		  }
+		  break;
+		case 'm':
+		  if (numMatches >= number/5){
+		    pairs += v.at(i) + " " + v.at(j) + "\n";
+		    broken = 1;
+		  }				
+		  break;				
+		case 'l':
+		  if (numMatches >= number*2/5){
+		    pairs += v.at(i) + " " + v.at(j) + "\n";
+		    broken = 1;
+		  }				
+		  break;												
 		}
-		i++;
+	      } else if (val < 0){
+		coll1iter++;
+	      } else if (val > 0){
+		coll2iter++;
+	      }
+	      if (broken == 1){
+		break;
+	      }
+	    }
+	    j++;
+	  }
+	  i++;
 	}
 	pairs += "\n\n";
 	return pairs;
-=======
 	if (broken == 1){
 	  break;
 	}
@@ -167,7 +164,6 @@ string algs(string filename, char sense){
     i++;
   }
   return pairs;
->>>>>>> b499db5f1f1d8b0c1c0afc6ea634ccb5468b30f7
 }
 
 int compare(vector<string> v1, vector<string> v2){
