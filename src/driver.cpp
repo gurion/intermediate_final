@@ -33,6 +33,7 @@ int main(int argc, char* argv[]){
 
 	if (output != "ERROR - Bad file input.")
 		cout << "The following pairs of files have been marked as suspiciously similar: \n\n";
+	
 	cout << output;
 
 	return 0;

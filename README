@@ -27,9 +27,11 @@ This is the final project for Intermediate Programming - to design and build a p
 		Description - This class holds functions for getting input from a file and turning it into an NgramCollection.
 		Function: getInput
 		Function: increment
+		Function: toString
 		Function: getN
 		Function: getNumWords
-	
+		Function: getNumGrams
+		
 	Class: DocList
 		Description - This class holds functions for checking files and making a list of file names.
 		Function: MakeList
@@ -39,6 +41,7 @@ This is the final project for Intermediate Programming - to design and build a p
 	File: PlagiarismAlgorithms
 		Description - Function to check a list of files for plagiarism at a specified sensitivity.
 		Function: algs
+		Function: compare
 		
 	File: Driver
 		Holds main method for the program, and deals with input.
@@ -73,11 +76,16 @@ This is the final project for Intermediate Programming - to design and build a p
 	File: plagiarismAlgorithms.hpp
 
 5) Flags
-   Sensitivities are classified as follows: h - 5%, m - 10%, l - 20%.
+   Sensitivities are classified as follows: h - 4%, m - 10%, l - 25%.
 
 6) Timing
+<<<<<<< HEAD
       
 
+=======
+   As far as I can tell, through tests and many print statements, the functions used work. However, the program doesn't finish running. At the get input stage, it never exits the loop.
+   
+>>>>>>> 814c531be636da66371449111f7ac6b494ce939b
 7) Challenges
    I had initial challenges on trying to figure out how to best get and store input in order to make the program efficient.
 

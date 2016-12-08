@@ -1,0 +1,3 @@
+/home/cs120/public_data/sm_doc_set/abf0704.txt
+/home/cs120/public_data/sm_doc_set/abf70402.txt
+/home/cs120/public_data/sm_doc_set/bef1121.txt
