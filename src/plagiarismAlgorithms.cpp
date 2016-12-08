@@ -9,7 +9,7 @@ using std::ifstream;
 
 //plagiarism algorithm
 string algs(string filename, char sense){
-	string pairs = "The following pairs are suspicious:\n";
+	string pairs = "";
 	docList docs;
 	int numMatches = 0;	
 
@@ -30,8 +30,8 @@ string algs(string filename, char sense){
 	}
 	
 	//compare Ngram
-	for (auto iter1 = colls.begin(); iter1 != colls.end() - 1; iter1++){	  
-		unsigned i = 0;
+	unsigned i = 0;
+	for (auto iter1 = colls.begin(); iter1 != colls.end() - 1; iter1++){	 
 		for (auto iter2 = iter1++; iter2 != colls.end(); iter2++){
 			numMatches = 0;
 			unsigned j = i + 1;
@@ -58,29 +58,23 @@ string algs(string filename, char sense){
 					coll2iter++;
 					switch (sense){
 						case 'h':
-						  if (numMatches >= number/25){
+						  	if (numMatches >= number/25){
 								pairs += v.at(i) + " " + v.at(j) + "\n";
-								int broken = 1;
 								broken = 1;
 							}
 							break;
 						case 'm':
-						  if (numMatches >= number/10){
+						  	if (numMatches >= number/5){
 								pairs += v.at(i) + " " + v.at(j) + "\n";
-								int broken = 1;
 								broken = 1;
 							}				
 							break;				
 						case 'l':
-						  if (numMatches >= number/4){
+						  	if (numMatches >= number*2/5){
 								pairs += v.at(i) + " " + v.at(j) + "\n";
-								int broken = 1;
 								broken = 1;
 							}				
 							break;												
-					}
-					if (broken == 1){
-					  break;
 					}
 				} else if (val < 0){
 					coll1iter++;
@@ -95,6 +89,7 @@ string algs(string filename, char sense){
 		}
 		i++;
 	}
+	pairs += "\n\n";
 	return pairs;
 }
 

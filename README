@@ -26,22 +26,33 @@ This is the final project for Intermediate Programming - to design and build a p
 	Class: NgramCollection
 		Description - This class holds functions for getting input from a file and turning it into an NgramCollection.
 		Function: getInput
+			  Makes an NgramCollection from a file
 		Function: increment
+			  parses through a file to add to an NgramCollection
 		Function: toString
+			  Mostly for testing, stringifies an NgramCollection
 		Function: getN
+			  Getter
 		Function: getNumWords
+			  Getter - num words in a file
 		Function: getNumGrams
+			  Getter - number of Ngrams
 		
 	Class: DocList
 		Description - This class holds functions for checking files and making a list of file names.
 		Function: MakeList
+			  Add file names to a vector
 		Function: CheckList
+			  Make sure all files in a list are good
 		Function: getNumDocs
+			  Getter - tells number of documents in a list
 
 	File: PlagiarismAlgorithms
 		Description - Function to check a list of files for plagiarism at a specified sensitivity.
 		Function: algs
+			  Does the actual plagiarim checking. Checks two NgramCollections at a time, string by string. If the number of similar strings is above a threshold (given by sensitivity) then the files are marked as similar. Returns a string that is a list of pairs.
 		Function: compare
+			  compares two vectors. Used algs.
 		
 	File: Driver
 		Holds main method for the program, and deals with input.
@@ -50,6 +61,7 @@ This is the final project for Intermediate Programming - to design and build a p
 		Links and compiles files to produce executable.
 
    Directory: tests
+   	*These files are for testing the functions described above*
    	File: unitTestDriver.cpp
 	File: unitTests-NgramCollection.cpp
 	File: unitTests-docList.cpp
@@ -76,18 +88,13 @@ This is the final project for Intermediate Programming - to design and build a p
 	File: plagiarismAlgorithms.hpp
 
 5) Flags
-   Sensitivities are classified as follows: h - 4%, m - 10%, l - 25%.
+   Sensitivities are classified as follows: h - 5%, m - 20%, l - 40%.
 
 6) Timing
-<<<<<<< HEAD
-      
+   I used ctime to build in a timing mechanism to tell you how long the program takes. The small data set took around a second, and the medium one took 5. I didn't wait for big or huge, but looking at the smaller times, it would probably be a few minutes.
 
-=======
-   As far as I can tell, through tests and many print statements, the functions used work. However, the program doesn't finish running. At the get input stage, it never exits the loop.
-   
->>>>>>> 814c531be636da66371449111f7ac6b494ce939b
 7) Challenges
-   I had initial challenges on trying to figure out how to best get and store input in order to make the program efficient.
+   I had initial challenges on trying to figure out how to best get and store input in order to make the program efficient. I ended up storing NgramCollections in a vector so that I only dealt with input once, and figured out a good algorithm for string matching to make parsing through data pretty quick.
 
 8) Future
    There are many things I can do to make the plagiarism checking more accurate, such as implementing more algorithms or a different type of checking. I can also work to make it more efficient. 

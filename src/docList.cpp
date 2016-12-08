@@ -44,3 +44,4 @@ vector<string> docList::makeList(string filename){
 		return list;
 	}
 }
+
