@@ -42,9 +42,8 @@ int main(int argc, char* argv[]){
 		cout << "The following pairs of files have been marked as suspiciously similar: \n\n";
 	
 	cout << output;
-	
-	int stop_s = clock();
-	cout << "It took the program " << (stop_s - start_s)/double(CLOCKS_PER_SEC) << " seconds to run.\n\n";
-	cout << "Goodbye, have a beautiful time!";
+      	int stop_s = clock();
+	cout << "The program found took " << (stop_s - start_s)/double(CLOCKS_PER_SEC) << " seconds to run at (" << argv[2][0] << ") sensitivity.\n\n";
+	cout << "Goodbye, have a beautiful time!\n\n";
 	return 0;
 }
