@@ -89,6 +89,7 @@ string algs(string filename, char sense){
 		i++;
 	}
 	pairs += "\n\n";
+	return pairs;
 }
 
 int compare(vector<string> v1, vector<string> v2){
